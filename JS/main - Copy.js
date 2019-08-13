@@ -33,7 +33,6 @@ console.log("User flipped " + cards[cardId].suit);
 console.log("User flipped " + cards[cardId].cardImage);
 this.setAttribute("src" , cards[cardId].cardImage);
 setTimeout(checkFlip, 100); // wait for page image to update
-
 }
 
 // function for check if 2 cards have been played.
@@ -48,34 +47,25 @@ function checkFlip() {
 function checkForMatch() {
  	if (cardsInPlay[0] === cardsInPlay[1]) {
 	alert("You found a match!");
-	deleteBoard();
+	clearBoard();
+
 } 
 	else { alert("No match. Try again!"); 
-	deleteBoard();
+	clearBoard();
 }
 }
 
 // for reset of game by reload page
+function clearBoard(){
+	location.reload();
+	}
 
-// Removes an element from the document
-
-function deleteBoard() {
-    for (var i = 0; i < cards.length; i++){ 
-   	var element = document.getElementById("img"+i);
-    	element.parentNode.removeChild(element);
-	}	
-	
-	cardsInPlay.splice(0,cardsInPlay.length);
-	createBoard();
-	}	
-	
 // create of the board when page loads.
 function createBoard(){
 	for (var i = 0; i < cards.length; i++) {
 		var cardElement = document.createElement("img");
     	cardElement.setAttribute("src" , "images/back.png");
     	cardElement.setAttribute("data-id" , i);
-    	cardElement.setAttribute("id" , "img"+i);
     	cardElement.addEventListener("click" , flipCard);
     	console.log(cardElement);    	
     	document.getElementById("game-board").appendChild(cardElement);
