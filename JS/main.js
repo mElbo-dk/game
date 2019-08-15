@@ -44,12 +44,17 @@ function checkFlip() {
  	}
 }
 
+var highScore = 0;
+	
+
 // check for cards matching or not. 
 function checkForMatch() {
  	if (cardsInPlay[0] === cardsInPlay[1]) {
 	alert("You found a match!");
+	highScore = highScore +1;	
+	document.getElementById("highScore").innerHTML = highScore;
 	deleteBoard();
-} 
+ }
 	else { alert("No match. Try again!"); 
 	deleteBoard();
 }
